@@ -1,26 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { SearchBar } from './component/SearchBar';
+import { FavProvider } from './context/favContext';
+import { SearchProvider } from './context/SearchContext';
+import { UserList } from './page/UserList';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <SearchProvider>
+            <FavProvider>
+                <div className="App">
+                    <SearchBar/>
+                    <UserList/>
+                </div>
+            </FavProvider>
+        </SearchProvider>
+    );
 }
 
 export default App;

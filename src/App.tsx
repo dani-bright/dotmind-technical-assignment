@@ -1,20 +1,16 @@
 import React from 'react';
 import './App.css';
-import { SearchBar } from './component/SearchBar';
 import { FavProvider } from './context/favContext';
-import { SearchProvider } from './context/SearchContext';
-import { UserList } from './page/UserList';
+import { users } from './dummy';
+import { SearchUser } from './page/UserList';
 
 function App() {
     return (
-        <SearchProvider>
-            <FavProvider>
-                <div className="App">
-                    <SearchBar/>
-                    <UserList/>
-                </div>
-            </FavProvider>
-        </SearchProvider>
+        <FavProvider>
+            <div className="App">
+                <SearchUser data={ users } property="username"/>
+            </div>
+        </FavProvider>
     );
 }
 

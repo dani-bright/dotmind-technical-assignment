@@ -1,23 +1,17 @@
 import * as React from 'react';
-import { FC, ReactElement, useState } from 'react';
-import { useSearch } from '../context/SearchContext';
+import { FC, ReactElement } from 'react';
 
-export const SearchBar : FC = () : ReactElement => {
-    const { setUsers } = useSearch();
-    const [value, setValue] = useState('');
-    const onInputChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value)
-        setUsers(e.target.value)
-    };
-    const onReset = () => {
-        setValue('');
-        setUsers('')
-    };
+export interface ISearchBarProps {
+    onChange? : (e : React.ChangeEvent<HTMLInputElement>) => void;
+    onReset? : () => void;
+    value? : string;
+}
 
+export const SearchBar : FC<ISearchBarProps> = (props) : ReactElement => {
     return (
         <>
-            <input type="text" onChange={ onInputChange } value={ value }/>
-            <button onClick={ onReset }>reset</button>
+            <input { ...props } type="text"/>
+            <button onClick={ props.onReset }>reset</button>
         </>
     )
 };
